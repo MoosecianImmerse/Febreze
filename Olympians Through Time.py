@@ -6,8 +6,7 @@ from pygame.locals import *
 pygame.init()
 
 clock = pygame.time.Clock()
-fps = 120
-
+fps = 60
 screen_width = 1280
 screen_height = 640
 
@@ -29,7 +28,7 @@ chest1 = True
 Defe = False
 ealive = True
 worlddirection = 3
-
+colcnter = 1
 eaalive = True
 sceneo = scene
 mapo = False
@@ -127,7 +126,6 @@ class Player():
                 global tackcooldown
                 global chest1
                 global hitbox
-                global enemdie
                 global speed 
                 global Defe
                 global Tack
@@ -283,7 +281,7 @@ class Player():
                         if tackcooldown > 0:
                                 draw_text('GAME OVER!', font, white, (screen_width // 2) - 200, screen_height // 2 - 100)
                         if tackcooldown < 1:
-                                draw_text('GAME OVER!', font, (255, 150, 200), (screen_width // 2) - 200, screen_height // 2 - 100)
+                                draw_text('GAME OVER!', font, (205, 50, 255), (screen_width // 2) - 200, screen_height // 2 - 100)
                         draw_text('Take The L And Search Up A Walkthrough!', font_score, blue, (screen_width // 2)-450, screen_height // 2 + 100)
                         if self.rect.y > 150:
                                 self.rect.y -= 5
@@ -336,6 +334,7 @@ class Eanemies():
                 global playerRectx
                 global eanemyRecty
                 global eanemyRectx
+                global colcnter
                 global eqa
                 dx = 0
                 dy = 0
@@ -350,7 +349,9 @@ class Eanemies():
                                 dy += 5
                         self.image = self.images_right[self.index]
                         eaalive = True
-
+                        
+                        holdx = dx
+                        holdy = dy
                 
                         #check for collision
                         for tile in world.tile_list:
@@ -365,11 +366,20 @@ class Eanemies():
                                         dx = 0
                                         dy = 0
 
-                        
-                        
-                        
-                        
-        
+                        if holdx and holdy != 0:
+                               if dx == 0 and dy == 0:
+                                        if colcnter == 1:
+                                                if holdx > 0:
+                                                        dx = (holdx - (holdx *2))*2
+                                                if holdx < 0:
+                                                        dx = (holdx - (holdx *2))*2
+                                                colcnter = 0
+                                        elif colcnter == 0:
+                                                if holdy > 0:
+                                                        dy = (holdy - (holdy *2))*2
+                                                if holdy < 0:
+                                                        dy = (holdy - (holdy *2))*2
+                                                colcnter = 1
                         #update player coordinates
                         self.rect.x += dx
                         self.rect.y += dy
@@ -567,7 +577,7 @@ world_data2 = [
 [1, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
 [1, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
 [1, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
-[1, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
+[1, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
 [1, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
 [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
 [1, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1],
@@ -630,7 +640,10 @@ def mapi():
         global fps
         global speed
         global hitbox
+        global mapcnter
         global tackcooldown
+        global game_over
+        print (fps)
         if pmmi == 0:
                 screen.blit(pausemenu, (0, 0))
                 screen.blit(gear, (0, 0))
@@ -654,6 +667,8 @@ def mapi():
                         map1= pygame.image.load('img/map1.8.png')
                 if scene == 1:
                         map1= pygame.image.load('img/map1.1.png')
+                if game_over == -1:
+                        map1= pygame.image.load('img/mapded.png')
                 screen.blit(map1, (0, 0))
                 if (event.type == pygame.MOUSEBUTTONDOWN) and mapcnter <  0:
                         pmmi = 0
@@ -663,7 +678,6 @@ def mapi():
                 screen.blit(settingsmenu, (0, 0))
         
                 (mouseX, mouseY) = pygame.mouse.get_pos()
-                print (mouseY)
                 if (event.type == pygame.MOUSEBUTTONDOWN and 650>mouseX >200 and 75 >mouseY> 30):
                         hitbox = False
                         pmmi = 2
@@ -684,6 +698,18 @@ def mapi():
                         pmmi = 2
                 if (event.type == pygame.MOUSEBUTTONDOWN and 1120>mouseX >710 and 220 >mouseY> 180):
                         tackcooldown = 1000
+                        pmmi = 2
+                if (event.type == pygame.MOUSEBUTTONDOWN and 434>mouseX >205 and 251 >mouseY> 191):
+                        print ("HI")
+                        pmmi = 2
+                if (event.type == pygame.MOUSEBUTTONDOWN and 687>mouseX >445 and 251 >mouseY> 191):
+                        fps = 30
+                        pmmi = 2
+                if (event.type == pygame.MOUSEBUTTONDOWN and 943>mouseX >700 and 251 >mouseY> 191):
+                        fps = 60
+                        pmmi = 2
+                if (event.type == pygame.MOUSEBUTTONDOWN and 1185>mouseX >945 and 251 >mouseY> 191):
+                        fps = 120
                         pmmi = 2
 
                         
@@ -710,7 +736,6 @@ def scene1():
         global eaalive
         global playerRectx
         global playerRecty
-        global bloba1
         global hitbox
         global Defe
         global fc
@@ -741,6 +766,7 @@ def scene1():
                 
         screen.blit(bg_img, (0, 0))
 
+
         
 
         world.draw()
@@ -763,7 +789,8 @@ def scene1():
                         game_over = player.update(game_over)
 
                 if playerRect.colliderect(npcRect):
-                        screen.blit(text, (0, 0))
+                        if game_over == 0:
+                                screen.blit(text, (0, 0))
 
                 if playerRectx > 1280:
                         eqa = True
@@ -824,7 +851,6 @@ def scene2():
         global Defe
         global Tack
         global tackcooldown
-        global bloba1
         global engame_over
         global event
         global score
@@ -871,7 +897,8 @@ def scene2():
                         game_over = player1.update(game_over)
 
                 if playerRect.colliderect(npcRect):
-                        screen.blit(text, (0, 0))
+                        if game_over == 0:
+                                screen.blit(text, (0, 0))
 
                 if playerRectx < 0:
                         worlddirection = 3
@@ -879,25 +906,6 @@ def scene2():
                         fc = True
                         runn = 1
                 
-                        
-
-##                if eagame_over == 0:
-##                        if playerRect.colliderect(eanemyRect):
-##                                if Defe == False and Tack == True:
-##                                        Tack = Tack
-##                                if Defe == False and Tack == False:
-##                                        game_over = -1
-##                                if Tack == True:
-##                                        eagame_over = -1
-##                                        score += 100
-##                else:
-##                        if playerRect.colliderect(eanemyRect):
-##                                if tackcooldown >= 11:
-##                                        tackcooldown -= 10
-
-
-                        
-
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         run = False
@@ -908,7 +916,6 @@ pm = False
 runn = 1
 run = True
 while run:
-        print (worlddirection)
         if runn == 1:
                 scene1()
         elif runn == 2:
