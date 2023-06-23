@@ -31,7 +31,7 @@ while run:
         brownerb = "C:img/brownerb.png"
         new_file_name = "img/guy.png"
         new_file_name2 = "img/guyb.png"
-         new_file_name3 = "img/guya.png"
+        new_file_name3 = "img/guya.png"
         
         (mouseX, mouseY) = pygame.mouse.get_pos()
         print (mouseX)
