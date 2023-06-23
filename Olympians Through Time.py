@@ -650,7 +650,7 @@ world_data1 = [
 
 
 
-player = Player(300, screen_height - 130)
+player = Player(1200, 280)
 npc = Npc(300, 250)
 npc1 = Npc(860, 340)
 player1 = Player(20, 280)
@@ -908,7 +908,7 @@ def scene1():
         world = world2
 
         if fc ==  True:
-                player = Player(300, screen_height - 130)
+                player = Player(1200, 280)
                 npc = Npc(280, 260)
                 npc1 = Npc(860, 340)
                 player1 = Player(20, 280)
@@ -1016,7 +1016,7 @@ def scene2():
         world = world1
 
         if fc:
-                player = Player(300, screen_height - 130)
+                player = Player(1200, 280)
                 npc = Npc(300, screen_height - 100)
                 npc1 = Npc(860, 340)
                 player1 = Player(20, 280)
