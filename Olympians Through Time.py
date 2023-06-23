@@ -1,6 +1,7 @@
 import pygame
 import time
 import math
+import os
 from pygame.locals import *
 
 pygame.init()
@@ -21,6 +22,8 @@ eagame_over = 0
 hitbox = False
 engame_over = 0
 scene = 0
+loadcnter = 0
+loadcounter = 1
 sprint = True
 speed = 5
 Tack = False
@@ -51,6 +54,22 @@ eanemyRect = pygame.Rect(0, 0, 20, 20)
 
 
 #load images
+im16 = pygame.image.load('img/funload1.png')
+im9 = pygame.image.load('img/funload2.png')
+im10 = pygame.image.load('img/funload3.png')
+im11 = pygame.image.load('img/funload4.png')
+im12 = pygame.image.load('img/funload5.png')
+im13 = pygame.image.load('img/funload6.png')
+im14 = pygame.image.load('img/funload7.png')
+im15 = pygame.image.load('img/funload8.png')
+im1 = pygame.image.load('img/Loadbase1.png')
+im2 = pygame.image.load('img/Loadbase2.png')
+im3 = pygame.image.load('img/Loadbase3.png')
+im4 = pygame.image.load('img/Loadbase4.png')
+im5 = pygame.image.load('img/Loadbase5.png')
+im6 = pygame.image.load('img/Loadbase6.png')
+im7 = pygame.image.load('img/Loadbase7.png')
+im8 = pygame.image.load('img/Loadbase8.png')
 text = pygame.image.load('img/text.png')
 text1 = pygame.image.load('img/text1.png')
 text2 = pygame.image.load('img/text2.png')
@@ -130,6 +149,7 @@ class Player():
                 global Defe
                 global Tack
                 global eqa
+                plcol = True
                 dx = 0
                 dy = 0
                 walk_cooldown = 5
@@ -243,6 +263,13 @@ class Player():
                                 if self.direction == 1:
                                         self.image = self.images_rattack[self.index]
                                 draw_text('Mana ='+ str(tackcooldown) +'', font_stats, (0,0,0), (screen_width // 2)-620, 30)
+                        if key[pygame.K_SPACE]:
+                                plcol = False
+                                tackcooldown -= 30
+                                if self.rect.y > 640:
+                                        dx = 0 
+                                
+
                         if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False and key[pygame.K_DOWN] and key[pygame.K_UP] :
                                 self.counter = 0
                                 self.index = 0
@@ -257,16 +284,16 @@ class Player():
                         
                                         
 
-                        
-                        #check for collision
-                        for tile in world.tile_list:
-                                if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height) or tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
-                                        #check for collision in x direction
-                                        if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
-                                                dx = 0
-                                        #check for collision in y dircetion
-                                        if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
-                                                dy = 0
+                        if plcol == True:
+                                #check for collision
+                                for tile in world.tile_list:
+                                        if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height) or tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+                                                #check for collision in x direction
+                                                if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
+                                                        dx = 0
+                                                #check for collision in y dircetion
+                                                if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+                                                        dy = 0
 
                         #update player coordinates
                         self.rect.x += dx
@@ -643,7 +670,6 @@ def mapi():
         global mapcnter
         global tackcooldown
         global game_over
-        print (fps)
         if pmmi == 0:
                 screen.blit(pausemenu, (0, 0))
                 screen.blit(gear, (0, 0))
@@ -678,6 +704,7 @@ def mapi():
                 screen.blit(settingsmenu, (0, 0))
         
                 (mouseX, mouseY) = pygame.mouse.get_pos()
+                print (mouseX)
                 if (event.type == pygame.MOUSEBUTTONDOWN and 650>mouseX >200 and 75 >mouseY> 30):
                         hitbox = False
                         pmmi = 2
@@ -699,16 +726,16 @@ def mapi():
                 if (event.type == pygame.MOUSEBUTTONDOWN and 1120>mouseX >710 and 220 >mouseY> 180):
                         tackcooldown = 1000
                         pmmi = 2
-                if (event.type == pygame.MOUSEBUTTONDOWN and 434>mouseX >205 and 251 >mouseY> 191):
-                        print ("HI")
+                if (event.type == pygame.MOUSEBUTTONDOWN and 434>mouseX >205 and 291 >mouseY> 251):
+                        fps = 10
                         pmmi = 2
-                if (event.type == pygame.MOUSEBUTTONDOWN and 687>mouseX >445 and 251 >mouseY> 191):
+                if (event.type == pygame.MOUSEBUTTONDOWN and 687>mouseX >445 and 291 >mouseY> 251):
                         fps = 30
                         pmmi = 2
-                if (event.type == pygame.MOUSEBUTTONDOWN and 943>mouseX >700 and 251 >mouseY> 191):
+                if (event.type == pygame.MOUSEBUTTONDOWN and 943>mouseX >700 and 291 >mouseY> 251):
                         fps = 60
                         pmmi = 2
-                if (event.type == pygame.MOUSEBUTTONDOWN and 1185>mouseX >945 and 251 >mouseY> 191):
+                if (event.type == pygame.MOUSEBUTTONDOWN and 1185>mouseX >945 and 291 >mouseY> 251):
                         fps = 120
                         pmmi = 2
 
@@ -719,6 +746,130 @@ def mapi():
 #Right side side, then direction = 3
 #Left side, then direction = 4
 # Refrence to the destination, not point of origin
+
+def load():
+        global loadcnter
+        global loadcounter
+        global fps
+        global im16
+        global im9
+        global im10
+        global im11
+        global im12
+        global im13
+        global im14
+        global im15
+        global im1
+        global im2
+        global im3
+        global im4
+        global runn
+        global im5
+        global im6
+        global im7
+        global im8
+        global event
+        clock.tick(fps)
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+        print (mouseY)
+        if loadcounter == 1:
+                screen.blit(im1, (0, 0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 2:
+                screen.blit(im2, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 3:
+                screen.blit(im3, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 4:
+                screen.blit(im4, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 5:
+                screen.blit(im5, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 6:
+                screen.blit(im6, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 7:
+                screen.blit(im7, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 8:
+                screen.blit(im8, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 9:
+                screen.blit(im9, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 10:
+                screen.blit(im10, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 11:
+                screen.blit(im11, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 12:
+                screen.blit(im12, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 13:
+                screen.blit(im13, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 14:
+                screen.blit(im14, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 15:
+                screen.blit(im15, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter += 1
+        if loadcounter == 16:
+                screen.blit(im16, (0,0))
+                loadcnter += 1
+                if loadcnter == fps:
+                        loadcnter = 0
+                        loadcounter = 9
+        pygame.display.update()
+        
 def scene1():
         global scene
         global fps
@@ -831,6 +982,7 @@ def scene2():
         global text1
         global bg_img
         global world
+        global im1
         global eanemyRect
         global playerRect
         global npc1
@@ -920,4 +1072,6 @@ while run:
                 scene1()
         elif runn == 2:
                 scene2()
+        elif runn == -1:
+                load()
 pygame.quit()
