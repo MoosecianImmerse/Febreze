@@ -1237,6 +1237,106 @@ def scene3():
                         run = False
 
         pygame.display.update()
+
+def scene4():
+        global scene
+        global fps
+        global text
+        global text1
+        global bg_img
+        global world
+        global eanemyRect
+        global worlddirection
+        global playerRect
+        global pm
+        global pmmi
+        global eagame_over
+        global game_over
+        global eaalive
+        global playerRectx
+        global playerRecty
+        global hitbox
+        global Defe
+        global fc
+        global npc
+        global player
+        global bloba
+        global Tack
+        global tackcooldown
+        global event
+        global score
+        global world
+        global runn
+        global eqa
+        bg_img = pygame.image.load('img/ground.png')
+        clock.tick(fps)
+        text = text1
+        engame_over = 0
+        scene = 1
+        world = world4
+
+        if fc ==  True:
+                player = Player(1200, 280)
+                npc = Npc(280, 260)
+                npc1 = Npc(860, 340)
+                player1 = Player(20, 280)
+        fc = False
+                
+                
+        screen.blit(bg_img, (0, 0))
+
+
+        
+
+        world.draw()
+        if hitbox == True:
+                pygame.draw.rect(screen, (255, 255, 255), playerRect, 2)
+                pygame.draw.rect(screen, (255, 255, 255), eanemyRect, 2)
+
+
+
+        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
+                pm = True
+                mapi()
+                if pmmi == 2:
+                        pmmi = 0
+        if pm == False:
+                eagame_over = bloba.update(eagame_over)
+                if worlddirection == 3:
+                        game_over = player.update(game_over)
+
+                if playerRectx > 1280:
+                        eqa = True
+                        fc = True
+                        runn = 2
+                        worlddirection = 4
+                        
+
+                if eagame_over == 0:
+                        if playerRect.colliderect(eanemyRect):
+                                if Defe == False and Tack == True:
+                                        Tack = Tack
+                                if Defe == False and Tack == False:
+                                        game_over = -1
+                                if Tack == True:
+                                        eagame_over = -1
+                                if tackcooldown >= 11:
+                                        tackcooldown -= 10
+                else:
+                        if playerRect.colliderect(eanemyRect):
+                                if tackcooldown >= 11:
+                                        tackcooldown -= 10
+
+
+               
+                         
+
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        run = False
+
+        pygame.display.update()
+
 pm = False
 
 runn = 1
