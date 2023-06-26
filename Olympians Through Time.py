@@ -691,6 +691,7 @@ npc1 = Npc(860, 340)
 player1 = Player(20, 280)
 bloba = Eanemies(300, 280)
 player2 = Player (10, 280)
+player4 = Player(20, 280)
 
 
 world2 = World(world_data2)
@@ -1017,6 +1018,7 @@ def scene2():
         global fps
         global text
         global text1
+        global player4
         global bg_img
         global world
         global im1
@@ -1056,7 +1058,8 @@ def scene2():
                 player = Player(1200, 280)
                 npc = Npc(300, screen_height - 100)
                 npc1 = Npc(860, 340)
-                player1 = Player(20, 280)
+                player1 = Player(1270, 280)
+                player4 = Player(20, 280)
         fc = False
                 
         screen.blit(bg_img, (0, 0))
@@ -1083,7 +1086,10 @@ def scene2():
         if pm == False:
                 engame_over = npc1.update(engame_over)
                 if worlddirection == 4:
+                        game_over = player4.update(game_over)
+                if worlddirection == 3:
                         game_over = player1.update(game_over)
+
 
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
@@ -1178,7 +1184,7 @@ def scene3():
                         pmmi = 0
         if pm == False:
                 engame_over = npc1.update(engame_over)
-                if worlddirection == 3:
+                if worlddirection == 4:
                         game_over = player2.update(game_over)
 
                 if playerRect.colliderect(npcRect):
@@ -1186,7 +1192,7 @@ def scene3():
                                 screen.blit(text, (0, 0))
 
                 if playerRectx < 0:
-                        worlddirection = 4
+                        worlddirection = 3
                         eqa = True
                         fc = True
                         runn = 2
@@ -1205,7 +1211,7 @@ while run:
                 scene1()
         elif runn == 2:
                 scene2()
-        elif runn == 2:
+        elif runn == 3:
                 scene3()
         elif runn == -1:
                 load()
