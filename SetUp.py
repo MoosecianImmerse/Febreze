@@ -50,7 +50,7 @@ def rr1():
         whitea = "C:img/whitea.png"
         browna = "C:img/browna.png"
         brownera = "C:img/brownera.png"
-        paleb = "C:img/palemb.png"
+        paleb = "C:img/paleb.png"
         whiteb = "C:img/whiteb.png"
         brownb = "C:img/brownb.png"
         brownerb = "C:img/brownerb.png"
