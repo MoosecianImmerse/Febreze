@@ -1399,6 +1399,7 @@ def scene5():
         global fps
         global text
         global text1
+        global text4
         global bg_img
         global world
         global eanemyRect
