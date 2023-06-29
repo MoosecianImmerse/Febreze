@@ -75,6 +75,7 @@ text4 = pygame.image.load('img/text4.png')
 text1 = pygame.image.load('img/text1.png')
 text2 = pygame.image.load('img/text2.png')
 text3= pygame.image.load('img/text3.png')
+text5 = pygame.image.load('img/text5.png')
 bg_img = pygame.image.load('img/ground.png')
 stimg = pygame.image.load('img/statbox.png')
 hurt = pygame.image.load('img/hurt.png')
@@ -1211,6 +1212,7 @@ def scene3():
         global npcRect
         global player6
         global npcRecty
+        global text5
         global hitbox
         global npcRectx
         global pm
@@ -1234,7 +1236,7 @@ def scene3():
         global eqa
         bg_img = pygame.image.load('img/ground2.png')
         clock.tick(fps)
-        text = text2
+        text = text5
         scene = 3
         world = world3
 
