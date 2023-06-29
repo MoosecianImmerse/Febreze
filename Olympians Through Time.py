@@ -1424,6 +1424,7 @@ def scene5():
         global score
         global world
         global runn
+        global text4
         global eqa
         bg_img = pygame.image.load('img/ground7.png')
         clock.tick(fps)
