@@ -73,6 +73,7 @@ im8 = pygame.image.load('img/Loadbase8.png')
 text = pygame.image.load('img/text.png')
 text1 = pygame.image.load('img/text1.png')
 text2 = pygame.image.load('img/text2.png')
+text3= pygame.image.load('img/text3.png')
 bg_img = pygame.image.load('img/ground.png')
 stimg = pygame.image.load('img/statbox.png')
 hurt = pygame.image.load('img/hurt.png')
@@ -718,22 +719,62 @@ world_data4 = [
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
+world_data5 = [
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 0, 0, 0, 1],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 0, 0, 0, 1],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 0, 0, 0, 1],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 0, 0, 0, 1],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+]
+
+
 
 player = Player(1200, 280)
 npc = Npc(300, 250)
+npc2 = Npc(860, 340)
 npc1 = Npc(860, 340)
 player1 = Player(20, 280)
-bloba = Eanemies(300, 280)
+bloba = Eanemies(640, 320)
 player2 = Player (10, 280)
 player4 = Player(20, 280)
 player6 = Player(20, 280)
 player7 = Player(20, 280)
+player8 = Player(20, 280)
+player9 = Player(20, 280)
 
 
 world2 = World(world_data2)
 world3 = World(world_data3)
 world1 = World(world_data1)
 world4 = World(world_data4)
+world5 = World(world_data5)
 pmmi = 0
 
 def mapi():
@@ -770,6 +811,8 @@ def mapi():
                         map1= pygame.image.load('img/map1.7.png')
                 if scene == 4:
                         map1= pygame.image.load('img/map1.6.png')
+                if scene == 5:
+                        map1= pygame.image.load('img/map1.10.png')
                 if scene == 1:
                         map1= pygame.image.load('img/map1.1.png')
                 if game_over == -1:
@@ -1002,7 +1045,6 @@ def scene1():
         world.draw()
         if hitbox == True:
                 pygame.draw.rect(screen, (255, 255, 255), playerRect, 2)
-                pygame.draw.rect(screen, (255, 255, 255), eanemyRect, 2)
                 pygame.draw.rect(screen, (255, 255, 255), npcRect, 2)
 
 
@@ -1014,7 +1056,6 @@ def scene1():
                         pmmi = 0
         if pm == False:
                 engame_over = npc.update(engame_over)
-                eagame_over = bloba.update(eagame_over)
                 if worlddirection == 3:
                         game_over = player.update(game_over)
 
@@ -1260,7 +1301,7 @@ def scene4():
         global scene
         global fps
         global text
-        global text1
+        global text3
         global bg_img
         global world
         global eanemyRect
@@ -1275,9 +1316,11 @@ def scene4():
         global playerRecty
         global hitbox
         global player6
+        global player9
         global Defe
         global fc
         global npc
+        global npc2
         global player
         global bloba
         global Tack
@@ -1289,7 +1332,7 @@ def scene4():
         global eqa
         bg_img = pygame.image.load('img/ground6.png')
         clock.tick(fps)
-        text = text1
+        text = text3
         engame_over = 0
         scene = 4
         world = world4
@@ -1298,7 +1341,9 @@ def scene4():
                 player = Player(1200, 280)
                 npc = Npc(280, 260)
                 npc1 = Npc(860, 340)
+                npc2 = Npc(760, 540)
                 player6 = Player(600, 100)
+                player9 = Player(1270, 300)
                 player1 = Player(20, 280)
         fc = False
                 
@@ -1321,14 +1366,132 @@ def scene4():
                 if pmmi == 2:
                         pmmi = 0
         if pm == False:
+                engame_over = npc2.update(engame_over)
                 if worlddirection == 1:
                         game_over = player6.update(game_over)
+                if worlddirection == 4:
+                        game_over = player9.update(game_over)
 
                 if playerRecty < 100:
                         eqa = True
                         fc = True
                         runn = 3
                         worlddirection = 1
+                if playerRectx > 1280:
+                        eqa = True
+                        fc = True
+                        runn = 5
+                        worlddirection = 3
+                        
+                if playerRect.colliderect(npcRect):
+                        if game_over == 0:
+                                screen.blit(text, (0, 0))
+                                
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        run = False
+
+        pygame.display.update()
+
+def scene5():
+        global scene
+        global fps
+        global text
+        global text1
+        global bg_img
+        global world
+        global eanemyRect
+        global worlddirection
+        global playerRect
+        global pm
+        global pmmi
+        global eagame_over
+        global game_over
+        global eaalive
+        global playerRectx
+        global playerRecty
+        global hitbox
+        global Defe
+        global fc
+        global npc
+        global player8
+        global bloba
+        global Tack
+        global tackcooldown
+        global event
+        global score
+        global world
+        global runn
+        global eqa
+        bg_img = pygame.image.load('img/ground7.png')
+        clock.tick(fps)
+        text = text1
+        engame_over = 0
+        scene = 5
+        world = world5
+
+        if fc ==  True:
+                player8 = Player(20, 280)
+                npc = Npc(280, 260)
+                npc1 = Npc(860, 340)
+                player1 = Player(20, 320)
+        fc = False
+                
+                
+        screen.blit(bg_img, (0, 0))
+
+
+        
+
+        world.draw()
+        if hitbox == True:
+                pygame.draw.rect(screen, (255, 255, 255), playerRect, 2)
+                pygame.draw.rect(screen, (255, 255, 255), eanemyRect, 2)
+                pygame.draw.rect(screen, (255, 255, 255), npcRect, 2)
+
+
+
+        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
+                pm = True
+                mapi()
+                if pmmi == 2:
+                        pmmi = 0
+        if pm == False:
+                engame_over = npc.update(engame_over)
+                eagame_over = bloba.update(eagame_over)
+                if worlddirection == 3:
+                        game_over = player8.update(game_over)
+
+                if playerRect.colliderect(npcRect):
+                        if game_over == 0:
+                                screen.blit(text, (0, 0))
+
+                if playerRectx < 0:
+                        eqa = True
+                        fc = True
+                        runn = 4
+                        worlddirection = 4
+                        
+
+                if eagame_over == 0:
+                        if playerRect.colliderect(eanemyRect):
+                                if Defe == False and Tack == True:
+                                        Tack = Tack
+                                if Defe == False and Tack == False:
+                                        game_over = -1
+                                if Tack == True:
+                                        eagame_over = -1
+                                if tackcooldown >= 11:
+                                        tackcooldown -= 10
+                else:
+                        if playerRect.colliderect(eanemyRect):
+                                if tackcooldown >= 11:
+                                        tackcooldown -= 10
+
+
+               
+                         
+
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         run = False
@@ -1349,6 +1512,8 @@ while run:
                 scene3()
         elif runn == 4:
                 scene4()
+        elif runn == 5:
+                scene5()
         elif runn == -1:
                 load()
 pygame.quit()
