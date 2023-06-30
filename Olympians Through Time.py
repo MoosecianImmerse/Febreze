@@ -19,7 +19,7 @@ tile_size = 20
 game_over = 0
 egame_over = 0
 eagame_over = 0
-hitbox = True
+hitbox = False
 engame_over = 0
 scene = 0
 loadcnter = 0
@@ -76,6 +76,8 @@ text1 = pygame.image.load('img/text1.png')
 text2 = pygame.image.load('img/text2.png')
 text3= pygame.image.load('img/text3.png')
 text5 = pygame.image.load('img/text5.png')
+text6 = pygame.image.load('img/text6.png')
+text7 = pygame.image.load('img/text7.png')
 bg_img = pygame.image.load('img/ground.png')
 stimg = pygame.image.load('img/statbox.png')
 hurt = pygame.image.load('img/hurt.png')
@@ -1621,7 +1623,7 @@ def scene6():
         global eqa
         bg_img = pygame.image.load('img/ground7.png')
         clock.tick(fps)
-        text = text4
+        text = text7
         engame_over = 0
         scene = 6
         world = world6
@@ -1731,11 +1733,11 @@ def scene11():
         global event
         global score
         global runn
-        global text4
+        global text6
         global eqa
         bg_img = pygame.image.load('img/sorhouse.png')
         clock.tick(fps)
-        text = text4
+        text = text6
         engame_over = 0
         scene = 6
         world = world11
@@ -1794,7 +1796,7 @@ def scene11():
 
 pm = False
 
-runn = 6
+runn = 1
 run = True
 while run:
         print (playerRect)
