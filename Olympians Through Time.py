@@ -479,34 +479,38 @@ class Npc():
                 global npcangle
                 global npcRecty
                 global npcRectx
+                global tackcooldown
                 global npcRect
+                brokenho = pygame.image.load('img/brokenhorror.png')
+                meme = pygame.image.load('img/memedown.png')
+                
+                if engame_over == 0:
+                        #calculate angle of view
+                        angx = abs(self.rect.x - playerRectx)
+                        angy = abs(self.rect.y - playerRecty)
+                        hypotnuse = math.sqrt(angy**2+ angx**2)
+                        if hypotnuse > 0:
+                                npcangle = math.degrees(math.atan(angy/hypotnuse))
 
-                #calculate angle of view
-                angx = abs(self.rect.x - playerRectx)
-                angy = abs(self.rect.y - playerRecty)
-                hypotnuse = math.sqrt(angy**2+ angx**2)
-                if hypotnuse > 0:
-                        npcangle = math.degrees(math.atan(angy/hypotnuse))
+                        if playerRecty > npcRecty and npcangle > 22:
+                                self.image = self.images_left[self.index]
+                        if playerRecty < npcRecty and npcangle > 22:
+                                self.image = self.images_right[self.index]
+                        if playerRectx > npcRectx and npcangle < 22:
+                                self.image = self.images_lefto[self.index]
+                        if playerRectx < npcRectx and npcangle < 22:
+                                self.image = self.images_righto[self.index]
+                 
+                        #draw player onto screen
+                        screen.blit(self.image, self.rect)
+                        npcRect = self.rect
+                        npcRecty = self.rect.y
+                        npcRectx = self.rect.x
 
-                if playerRecty > npcRecty and npcangle > 22:
-                        self.image = self.images_left[self.index]
-                if playerRecty < npcRecty and npcangle > 22:
-                        self.image = self.images_right[self.index]
-                if playerRectx > npcRectx and npcangle < 22:
-                        self.image = self.images_lefto[self.index]
-                if playerRectx < npcRectx and npcangle < 22:
-                        self.image = self.images_righto[self.index]
-         
-                        
-                        
-
-
-
-                #draw player onto screen
-                screen.blit(self.image, self.rect)
-                npcRect = self.rect
-                npcRecty = self.rect.y
-                npcRectx = self.rect.x
+                if engame_over == 1:
+                        screen.blit(brokenho, (0,0))
+                        screen.blit(meme,(456,256))
+                        tackcooldown -= 1
 
 
                 return engame_over
@@ -1100,10 +1104,10 @@ def scene1():
         global world
         global runn
         global eqa
+        global engame_over
         bg_img = pygame.image.load('img/ground.png')
         clock.tick(fps)
         text = text1
-        engame_over = 0
         scene = 1
         world = world2
 
@@ -1141,6 +1145,10 @@ def scene1():
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
+
+                        
                 if playerRectx > 1280:
                         eqa = True
                         fc = True
@@ -1148,20 +1156,6 @@ def scene1():
                         worlddirection = 4
                         
 
-                if eagame_over == 0:
-                        if playerRect.colliderect(eanemyRect):
-                                if Defe == False and Tack == True:
-                                        Tack = Tack
-                                if Defe == False and Tack == False:
-                                        game_over = -1
-                                if Tack == True:
-                                        eagame_over = -1
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
-                else:
-                        if playerRect.colliderect(eanemyRect):
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
 
 
                
@@ -1254,6 +1248,9 @@ def scene2():
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
+
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
 
                 if playerRectx < 0:
                         worlddirection = 3
@@ -1359,6 +1356,9 @@ def scene3():
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
+
                 if playerRectx < 0:
                         worlddirection = 3
                         eqa = True
@@ -1409,10 +1409,10 @@ def scene4():
         global world
         global runn
         global eqa
+        global engame_over
         bg_img = pygame.image.load('img/ground6.png')
         clock.tick(fps)
         text = text3
-        engame_over = 0
         scene = 4
         world = world4
 
@@ -1465,6 +1465,9 @@ def scene4():
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
+
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
                                 
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -1503,12 +1506,12 @@ def scene5():
         global world
         global runn
         global player9
+        global engame_over
         global text4
         global eqa
         bg_img = pygame.image.load('img/ground7.png')
         clock.tick(fps)
         text = text4
-        engame_over = 0
         scene = 5
         world = world5
 
@@ -1550,6 +1553,9 @@ def scene5():
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
+
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
 
                 if playerRectx < 0:
                         eqa = True
@@ -1612,6 +1618,7 @@ def scene6():
         global Defe
         global fc
         global npc
+        global engame_over
         global player8
         global bloba
         global Tack
@@ -1624,7 +1631,6 @@ def scene6():
         bg_img = pygame.image.load('img/ground7.png')
         clock.tick(fps)
         text = text7
-        engame_over = 0
         scene = 6
         world = world6
 
@@ -1665,6 +1671,9 @@ def scene6():
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
+
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
 
                 if playerRectx < 0:
                         eqa = True
@@ -1735,10 +1744,10 @@ def scene11():
         global runn
         global text6
         global eqa
+        global engame_over
         bg_img = pygame.image.load('img/sorhouse.png')
         clock.tick(fps)
         text = text6
-        engame_over = 0
         scene = 6
         world = world11
 
@@ -1776,6 +1785,9 @@ def scene11():
                 if playerRect.colliderect(npcRect):
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
+
+                if playerRect.colliderect(npcRect) and Tack == True:
+                        engame_over = 1
 
                 if playerRecty > 540:
                         eqa = True
