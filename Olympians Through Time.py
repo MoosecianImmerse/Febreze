@@ -318,7 +318,7 @@ class Player():
                         if engame_over == 0:
                                 draw_text('Take The L And Search Up A Walkthrough!', font_score, blue, (screen_width // 2)-450, screen_height // 2 + 100)
                         if engame_over == 1:
-                                draw_text('Take The L And Search Up A Walkthrough! Or Just Dont Kill Civilians...', font_score, blue, 0, screen_height // 2 + 100)
+                                draw_text('Take The L & Search Up A Walkthrough! Or Just Dont Kill', font_score, blue, 0, screen_height // 2 + 100)
                         if self.rect.y > 150:
                                 self.rect.y -= 5
                 
