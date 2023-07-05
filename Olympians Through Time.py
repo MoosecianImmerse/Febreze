@@ -509,7 +509,6 @@ class Npc():
 
                 if engame_over == 1:
                         screen.blit(brokenho, (0,0))
-                        screen.blit(meme,(456,256))
                         tackcooldown -= 1
 
 
