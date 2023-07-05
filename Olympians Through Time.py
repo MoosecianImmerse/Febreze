@@ -2,6 +2,7 @@ import pygame
 import time
 import math
 import os
+import random
 from pygame.locals import *
 
 pygame.init()
@@ -482,7 +483,7 @@ class Npc():
                 global tackcooldown
                 global npcRect
                 brokenho = pygame.image.load('img/brokenhorror.png')
-                meme = pygame.image.load('img/memedown.png')
+                meme = pygame.image.load('img/blinkscreen.png')
                 
                 if engame_over == 0:
                         #calculate angle of view
@@ -508,8 +509,12 @@ class Npc():
                         npcRectx = self.rect.x
 
                 if engame_over == 1:
+                        listo = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99]
+                        listc = random.choice(listo)
                         screen.blit(brokenho, (0,0))
                         tackcooldown -= 1
+                        if listc == 1:
+                                screen.blit (meme, (0, 0))
 
 
                 return engame_over
