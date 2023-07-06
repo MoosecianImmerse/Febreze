@@ -1148,7 +1148,7 @@ def scene1():
                 if worlddirection == 3:
                         game_over = player.update(game_over)
 
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1252,7 +1252,7 @@ def scene2():
                         game_over = player1.update(game_over)
 
 
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1359,7 +1359,7 @@ def scene3():
                 if worlddirection == 1:
                         game_over = player7.update(game_over)
                         
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1469,7 +1469,7 @@ def scene4():
                         runn = 5
                         worlddirection = 3
                         
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1557,7 +1557,7 @@ def scene5():
                 if worlddirection == 4:
                         game_over = player9.update(game_over)
 
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1675,7 +1675,7 @@ def scene6():
                 if worlddirection == 5:
                         game_over = player1.update(game_over)
 
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
@@ -1789,7 +1789,7 @@ def scene11():
                 if worlddirection == 3:
                         game_over = player8.update(game_over)
 
-                if playerRect.colliderect(npcRect):
+                if playerRect.colliderect(npcRect) and engame_over == 0:
                         if game_over == 0:
                                 screen.blit(text, (0, 0))
 
