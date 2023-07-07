@@ -354,7 +354,8 @@ class Player():
                 ene = pygame.image.load('img/blobo.png')
                 ene = pygame.transform.scale(ene, (40, 40))
                 if engame_over == 1:
-                        screen.blit(ene, (chasex, chasey))
+                        if game_over == 0:
+                                screen.blit(ene, (chasex, chasey))
 
                 #create global variables for player location
                 playerRect = self.rect
