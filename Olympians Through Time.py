@@ -28,6 +28,8 @@ loadcounter = 1
 sprint = True
 speed = 5
 Tack = False
+chasey = 0
+chasex = 0
 chest1 = True
 Defe = False
 ealive = True
@@ -145,9 +147,12 @@ class Player():
         def update(self, game_over):
                 #globalize neccesary variables
                 global map1
+                global chasex
+                global chasey
                 global playerRectx
                 global playerRecty
                 global playerRect
+                global engame_over
                 global tackcooldown
                 global chest1
                 global hitbox
@@ -302,6 +307,21 @@ class Player():
                                                         dy = 0
 
                         #update player coordinates
+                        if dx > 0:
+                                chasex = self.rect.x -50
+                        if dy > 0:
+                                chasey = self.rect.y -50
+                        if dx < 0:
+                                chasex = self.rect.x +50
+                        if dy < 0:
+                                chasey = self.rect.y +50
+                        if dx == 0:
+                                chasex = self.rect.x
+                        if dy == 0:
+                                chasey = self.rect.y
+                        if dx == 0 and dy == 0:
+                                chasey = 30000
+                        
                         self.rect.x += dx
                         self.rect.y += dy
                         
@@ -328,6 +348,13 @@ class Player():
 
                 #draw player onto screen
                 screen.blit(self.image, self.rect)
+
+
+                #draw chasing enemy
+                ene = pygame.image.load('img/blobo.png')
+                ene = pygame.transform.scale(ene, (40, 40))
+                if engame_over == 1:
+                        screen.blit(ene, (chasex, chasey))
 
                 #create global variables for player location
                 playerRect = self.rect
