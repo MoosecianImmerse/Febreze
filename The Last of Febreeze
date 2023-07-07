@@ -13,7 +13,7 @@ screen_width = 1280
 screen_height = 640
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Olympians')
+pygame.display.set_caption('The Last of Febreeze')
 
 #define game variables
 tile_size = 20
