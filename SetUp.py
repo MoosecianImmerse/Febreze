@@ -8,6 +8,7 @@ from pygame.locals import *
 #Define Variables
 bal = False
 tral = False
+skin = 0
 ral = True
 balo = False
 ftime = True
@@ -16,6 +17,7 @@ fps = 60
 screen_width = 640
 screen_height = 320
 cnter = 0
+nativescreen = 0
 
 #Initialize and Set Up Pygame
 pygame.init()
@@ -30,6 +32,7 @@ def rr1():
         #Gloabilize Variables
         global event
         global cnter
+        global skin
         global clock
         global fps
         global ral
@@ -116,7 +119,7 @@ def rr1():
                     while runn:
                         cnter += 1
                         if cnter == 3600:
-                                pygame.quit()
+                                skin = 4
                         pygame.display.update()
 
                 #If Browner Skin
@@ -129,7 +132,7 @@ def rr1():
                     while runn:
                         cnter += 1
                         if cnter == 3600:
-                                pygame.quit()
+                                skin = 2
                         pygame.display.update()
 
                 #If Pale Skin
@@ -142,7 +145,7 @@ def rr1():
                     while runn:
                         cnter += 1
                         if cnter == 3600:
-                                pygame.quit()
+                                skin = 3
                         pygame.display.update()
 
                 #If Brown Skin
@@ -155,16 +158,98 @@ def rr1():
                     while runn:
                         cnter += 1
                         if cnter == 3600:
-                                pygame.quit()
+                                skin = 4
                         pygame.display.update()
 
         #Update Frames
         pygame.display.update()
 
 
+def rr2():
+        #Gloabilize Variables
+        global event
+        global cnter
+        global skin
+        global clock
+        global fps
+        global ral
+        global bal
+        global balo
+        global ftime
+        global screen
+        global bag_img
+        global ruuun
+        global tral
+        global nativescreen
+
+        #Define Function Images Neccesary
+        pale = "C:img/paleman.png"
+        white = "C:img/whiteman.png"
+        brown = "C:img/brownman.png"
+        browner = "C:img/brownerman.png"
+        palea = "C:img/palea.png"
+        whitea = "C:img/whitea.png"
+        browna = "C:img/browna.png"
+        brownera = "C:img/brownera.png"
+        paleb = "C:img/paleb.png"
+        whiteb = "C:img/whiteb.png"
+        brownb = "C:img/brownb.png"
+        brownerb = "C:img/brownerb.png"
+        new_file_name = "img/guy.png"
+        new_file_name2 = "img/guyb.png"
+        new_file_name3 = "img/guya.png"
+        MorW = pygame.image.load("img/ManorWo.png")
+        Man = pygame.image.load("img/Man.png")
+        Woman = pygame.image.load("img/Woman.png")
+        bg_img = pygame.image.load('img/pickpla.png')
+        re_img = pygame.image.load('img/readyscr.png')
+        home = pygame.image.load ('img/homeload.png')
+        sklo = pygame.image.load ('img/skinload.png')
+        
+
+        #Define Mouse
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+
+        #Run CLock In Frames Per Second
+        clock.tick(fps)
+
+        #Choose Background Image
+        if nativescreen == 0:
+                bag_img = home
+        if nativescreen == 1:
+                bag_img = sklo
+             
+        #Display Background Image
+        screen.blit(bag_img, (0, 0))
+        
+        #Program For Termination        
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        pygame.quit()
+
+        if nativescreen == 0:
+                if event.type == pygame.MOUSEBUTTONDOWN and 432>mouseX >210 and 309 >mouseY> 267:
+                        #Run Game
+                        pygame.quit
+                if event.type == pygame.MOUSEBUTTONDOWN and 211>mouseX >114 and 36 >mouseY> 7:
+                        #Skin Page
+                        nativescreen = 1
+        if nativescreen == 1:
+                screen.blit(guy,(0,0))
+
+        pygame.display.update()
+                        
+
 #While Loop TO Run Program On Loop
 run = True
 while run:
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+        if skin == 0:
+                ruuun = 1
+        else:
+                ruuun = 2
         if ruuun == 1:
                 rr1()
-        
+        elif ruuun == 2:
+                rr2()
+pygame.quit()
