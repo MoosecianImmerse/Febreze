@@ -220,8 +220,6 @@ def rr2():
         re_img = pygame.image.load('img/readyscr.png')
         home = pygame.image.load ('img/homeload.png')
         sklo = pygame.image.load ('img/skinload.png')
-        guy = pygame.image.load ('img/guy.png')
-        guy = pygame.transform.scale(guy, (80,80))
         
 
         #Define Mouse
@@ -231,6 +229,8 @@ def rr2():
         clock.tick(fps)
 
         if cral:
+                guy = pygame.image.load ('img/guy.png')
+                guy = pygame.transform.scale(guy, (80,80))
 
                 #Choose Background Image
                 if nativescreen == 0:
