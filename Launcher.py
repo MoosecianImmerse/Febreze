@@ -8,7 +8,7 @@ from pygame.locals import *
 #Define Variables
 bal = False
 tral = False
-skin = 3
+skin = 0
 ral = True
 balo = False
 ftime = True
