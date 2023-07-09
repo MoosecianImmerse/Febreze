@@ -363,6 +363,7 @@ def rr2():
 #While Loop TO Run Program On Loop
 run = True
 while run:
+        print (cral)
         if ruuun == 2:
                 rr2()
 pygame.quit()
