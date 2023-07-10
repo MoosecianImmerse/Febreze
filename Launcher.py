@@ -117,7 +117,7 @@ def rr2():
                 if nativescreen == 0:
                         if event.type == pygame.MOUSEBUTTONDOWN and 432>mouseX >210 and 309 >mouseY> 267:
                                 #Run Game
-                                pygame.quit()
+                                import Game.py
                         if event.type == pygame.MOUSEBUTTONDOWN and 211>mouseX >114 and 36 >mouseY> 7:
                                 #Skin Page
                                 nativescreen = 1
@@ -129,7 +129,7 @@ def rr2():
                                 nativescreen = 0
                         if event.type == pygame.MOUSEBUTTONDOWN and 432>mouseX >210 and 309 >mouseY> 267:
                                 #Run Game
-                                pygame.quit()
+                                import Game.py
                         if event.type == pygame.MOUSEBUTTONDOWN and 219>mouseX >12 and 239 >mouseY> 200:
                                 #Reset And Change Skin
                                 #If White Skin
