@@ -23,12 +23,14 @@ eagame_over = 0
 hitbox = False
 engame_over = 0
 scene = 0
+rep = False
 loadcnter = 0
 loadcounter = 1
 sprint = True
 speed = 5
 Tack = False
 chasey = 0
+playerDirection = 0
 chasex = 0
 chest1 = True
 Defe = False
@@ -39,18 +41,23 @@ eaalive = True
 sceneo = scene
 mapo = False
 npcangle = 0
+pd = 5
 score = 0
 fc = True
 playerRectx = 0
+playerDirection = -2
 playerRecty= 0
 npcRectx = 0
 npcRecty= 0
 enemyRectx = 0
 enemyRecty = 0
 eqa = False
+terminate = True
+pegame_over = 0
 eanemyRectx = 0
 eanemyRecty = 0
 tackcooldown = 700
+bulletRect = pygame.Rect(0, 0, 20, 20)
 playerRect = pygame.Rect(0, 0, 20, 20)
 npcRect = pygame.Rect(0, 0, 20, 20)
 eanemyRect = pygame.Rect(0, 0, 20, 20)
@@ -88,6 +95,115 @@ map1= pygame.image.load('img/map1.1.png')
 pausemenu= pygame.image.load('img/PauseMenu.png')
 settingsmenu= pygame.image.load('img/settingsmenu.png')
 gear = pygame.image.load('img/Gear.png')
+poof = pygame.image.load('img/poof.png')
+
+
+
+
+class Poof():
+        def __init__(self, x, y):
+                self.images_right = []
+                self.images_righto = []
+                self.images_left = []
+                self.images_lefto = []
+                self.images_attack = []
+                self.images_battack = []
+                self.images_lattack = []
+                self.images_rattack = []
+                self.images_block = []
+                self.images_blockl=[]
+                self.images_blockr = []
+                self.images_blockb = []
+                self.index = 0
+                self.counter = 0
+                img_right = pygame.image.load('img/poof.png')
+                for num in range(1, 5):
+                        img_right = pygame.image.load('img/poof.png')
+                        img_right = pygame.transform.scale(img_right, (40, 40))
+                        img_left = pygame.transform.rotate(img_right,180)
+                        img_lefto = pygame.transform.rotate(img_right,90)
+                        img_righto = pygame.transform.rotate(img_right,270)
+                        self.images_right.append(img_right)
+                        self.images_righto.append(img_righto)
+                        self.images_left.append(img_left)
+                        self.images_lefto.append(img_lefto)
+                self.image = self.images_right[self.index]
+                self.rect = self.image.get_rect()
+                self.rect.x = x
+                self.rect.y = y
+                self.width = self.image.get_width()
+                self.height = self.image.get_height()
+                self.vel_y = 0
+                self.jumped = False
+                self.direction = 0
+
+        def update(self, pegame_over):
+                #globalize neccesary variables
+                global map1
+                global chasex
+                global chasey
+                global playerRectx
+                global playerRecty
+                global bulletRect
+                global playerRect
+                global pd
+                global engame_over
+                global tackcooldown
+                global playerDirection
+                global chest1
+                global hitbox
+                global speed 
+                global Defe
+                global Tack
+                global eqa
+                global terminate
+                
+                plcol = True
+                dx = 0
+                dy = 0
+                walk_cooldown = 5
+
+                if playerDirection == -2:
+                        pd = -2
+                        self.image = self.images_right[self.index]
+                if playerDirection == -1:
+                        pd = -1
+                        self.image = self.images_left[self.index]
+                if playerDirection == 2:
+                        pd = 2
+                        self.image = self.images_lefto[self.index]
+                if playerDirection == 1:
+                        pd = 1
+                        self.image = self.images_righto[self.index]
+
+                if pd == -2:
+                        dy -= 10
+                if pd == -1:
+                        dy += 10
+                if pd == 1:
+                        dx += 10
+                if pd == 2:
+                        dx -= 10
+                
+
+                #check for collision
+                for tile in world.tile_list:
+                        #check for collision in x direction
+                        if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
+                                terminate = True
+                        #check for collision in y direction
+                        if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+                                terminate = True
+                        #check if above the ground i.e. falling
+                        if 1280 < self.rect.x < 0 or 640 < self.rect.y < 0:
+                                terminate = True
+
+                self.rect.x += dx
+                self.rect.y += dy
+                bulletRect = self.rect
+
+                screen.blit(self.image, self.rect)
+
 
 
 class Player():
@@ -155,11 +271,16 @@ class Player():
                 global engame_over
                 global tackcooldown
                 global chest1
+                global rep
                 global hitbox
-                global speed 
+                global speed
+                global pegame_over
+                global poof
                 global Defe
+                global playerDirection
                 global Tack
                 global eqa
+                global terminate
                 plcol = True
                 dx = 0
                 dy = 0
@@ -279,7 +400,9 @@ class Player():
                                 tackcooldown -= 30
                                 if self.rect.y > 640:
                                         dx = 0 
-                                
+                        if key[pygame.K_v]:
+                                terminate = False
+                                rep = True
 
                         if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False and key[pygame.K_DOWN] and key[pygame.K_UP] :
                                 self.counter = 0
@@ -292,6 +415,13 @@ class Player():
                                         self.image = self.images_left[self.index]
                                 if self.direction == 2:
                                         self.image = self.images_lefto[self.index]
+
+
+                        if terminate == False:
+                                if rep:
+                                        poof = Poof(playerRectx, playerRecty)
+                                        rep = False
+                                pegame_over = poof.update(pegame_over)
                         
                                         
 
@@ -305,6 +435,10 @@ class Player():
                                                 #check for collision in y dircetion
                                                 if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                                                         dy = 0
+
+
+                                                
+
 
                         #update player coordinates
                         if dx > 0:
@@ -324,6 +458,8 @@ class Player():
                         
                         self.rect.x += dx
                         self.rect.y += dy
+
+                        
                         
                 #details what to do once player dies
                 if game_over == -1:
@@ -361,12 +497,15 @@ class Player():
                 playerRect = self.rect
                 playerRecty = self.rect.y
                 playerRectx = self.rect.x
+                playerDirection = self.direction
                 
 
                 return game_over
                 
 
 
+
+                
                                         
                                 
 class Eanemies():
@@ -389,6 +528,7 @@ class Eanemies():
                 self.vel_y = 0
                 self.jumped = False
                 self.direction = 0
+                
 
         def update(self, eagame_over):
                 global eanemyRect
@@ -397,12 +537,17 @@ class Eanemies():
                 global playerRecty
                 global playerRectx
                 global eanemyRecty
+                global bulletRect
                 global eanemyRectx
                 global colcnter
                 global eqa
                 dx = 0
                 dy = 0
                 if eagame_over == 0:
+
+                        if bulletRect.colliderect(self.rect):
+                                eagame_over = -1
+                        
                         if eanemyRectx > playerRectx:
                                 dx -= 5
                         if eanemyRectx < playerRectx:
@@ -1122,6 +1267,10 @@ def scene1():
         global pm
         global pmmi
         global eagame_over
+        global rep
+        global terminate
+        global pegame_over
+        global poof
         global game_over
         global eaalive
         global playerRectx
@@ -1846,7 +1995,7 @@ pm = False
 runn = 1
 run = True
 while run:
-        print (playerRect)
+        print (playerDirection)
         if runn == 1:
                 scene1()
         elif runn == 2:
