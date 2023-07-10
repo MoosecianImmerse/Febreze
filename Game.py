@@ -41,7 +41,7 @@ eaalive = True
 sceneo = scene
 mapo = False
 npcangle = 0
-pd = 5
+pd = 1
 score = 0
 fc = True
 playerRectx = 0
@@ -152,7 +152,8 @@ class Poof():
                 global playerDirection
                 global chest1
                 global hitbox
-                global speed 
+                global speed
+                global rep
                 global Defe
                 global Tack
                 global eqa
@@ -162,28 +163,33 @@ class Poof():
                 dx = 0
                 dy = 0
                 walk_cooldown = 5
-
-                if playerDirection == -2:
-                        pd = -2
-                        self.image = self.images_right[self.index]
-                if playerDirection == -1:
-                        pd = -1
-                        self.image = self.images_left[self.index]
-                if playerDirection == 2:
-                        pd = 2
-                        self.image = self.images_lefto[self.index]
-                if playerDirection == 1:
-                        pd = 1
-                        self.image = self.images_righto[self.index]
+                
+                if rep:
+                        if playerDirection == -2:
+                                pd = -2
+                                self.image = self.images_lefto[self.index]
+                                rep = False
+                        if playerDirection == -1:
+                                pd = -1
+                                self.image = self.images_righto[self.index]
+                                rep = False
+                        if playerDirection == 2:
+                                pd = 2
+                                self.image = self.images_left[self.index]
+                                rep = False
+                        if playerDirection == 1:
+                                pd = 1
+                                self.image = self.images_right[self.index]
+                                rep = False
 
                 if pd == -2:
-                        dy -= 10
+                        dy -= 20
                 if pd == -1:
-                        dy += 10
+                        dy += 20
                 if pd == 1:
-                        dx += 10
+                        dx += 20
                 if pd == 2:
-                        dx -= 10
+                        dx -= 20
                 
 
                 #check for collision
@@ -403,7 +409,6 @@ class Player():
                         if key[pygame.K_v]:
                                 terminate = False
                                 rep = True
-
                         if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False and key[pygame.K_DOWN] and key[pygame.K_UP] :
                                 self.counter = 0
                                 self.index = 0
@@ -420,7 +425,6 @@ class Player():
                         if terminate == False:
                                 if rep:
                                         poof = Poof(playerRectx, playerRecty)
-                                        rep = False
                                 pegame_over = poof.update(pegame_over)
                         
                                         
@@ -1995,7 +1999,7 @@ pm = False
 runn = 1
 run = True
 while run:
-        print (playerDirection)
+        print (rep)
         if runn == 1:
                 scene1()
         elif runn == 2:
