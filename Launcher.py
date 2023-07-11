@@ -234,6 +234,7 @@ def rr2():
                             os.rename(brownerb, new_file_name2)
                             os.rename(brownera, new_file_name3)
                             screen.blit(re_img, (0, 0))
+                            runn = True
                             while runn:
                                 cnter += 1
                                 if cnter > 360:
@@ -248,6 +249,7 @@ def rr2():
                             os.rename(paleb, new_file_name2)
                             os.rename(palea, new_file_name3)
                             screen.blit(re_img, (0, 0))
+                            runn = True
                             while runn:
                                 cnter += 1
                                 if cnter > 360:
@@ -262,6 +264,7 @@ def rr2():
                             os.rename(brownb, new_file_name2)
                             os.rename(browna, new_file_name3)
                             screen.blit(re_img, (0, 0))
+                            runn = True
                             while runn:
                                 cnter += 1
                                 if cnter > 360:
