@@ -6,11 +6,11 @@ import os
 from pygame.locals import *
 
 #Define Variables
+balo = False
 bal = False
 tral = False
 skin = 0
 ral = True
-balo = False
 ftime = True
 ruuun = 2
 fps = 60
@@ -112,8 +112,6 @@ def rr2():
                         if event.type == pygame.QUIT:
                                 pygame.quit()
 
-                print (skin)
-
                 if nativescreen == 0:
                         if event.type == pygame.MOUSEBUTTONDOWN and 432>mouseX >210 and 309 >mouseY> 267:
                                 #Run Game
@@ -139,6 +137,10 @@ def rr2():
                                         os.rename(new_file_name3, whitea)
                                         skin = 0
                                         cral = False
+                                        ral = True
+                                        tral = False
+                                        balo = False
+                                        cnter = 0
                                 #If Browner Skin
                                 if skin == 2:
                                         os.rename(new_file_name, browner)
@@ -146,6 +148,10 @@ def rr2():
                                         os.rename(new_file_name3, brownera)
                                         skin = 0
                                         cral = False
+                                        ral = True
+                                        tral = False
+                                        balo = False
+                                        cnter = 0
                                 #If Brown Skin
                                 if skin == 4:
                                         os.rename(new_file_name, brown)
@@ -153,12 +159,20 @@ def rr2():
                                         os.rename(new_file_name3, browna)
                                         skin = 0
                                         cral = False
+                                        ral = True
+                                        tral = False
+                                        balo = False
+                                        cnter = 0
                                 if skin == 3:
                                         os.rename(new_file_name, pale)
                                         os.rename(new_file_name2, paleb)
                                         os.rename(new_file_name3, palea)
                                         skin = 0
                                         cral = False
+                                        ral = True
+                                        tral = False
+                                        balo = False
+                                        cnter = 0
 
 
         if cral == False:
