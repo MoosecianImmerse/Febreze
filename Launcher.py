@@ -112,7 +112,7 @@ def rr2():
                         if event.type == pygame.QUIT:
                                 pygame.quit()
 
-                print (mouseX, mouseY)
+                print (skin)
 
                 if nativescreen == 0:
                         if event.type == pygame.MOUSEBUTTONDOWN and 432>mouseX >210 and 309 >mouseY> 267:
@@ -122,7 +122,7 @@ def rr2():
                                 #Skin Page
                                 nativescreen = 1
                 if nativescreen == 1:
-                        if skin != 0:
+                        if skin != 0 and cral == False:
                                 screen.blit(guy,(70,90))
                         if event.type == pygame.MOUSEBUTTONDOWN and 114>mouseX >10 and 36 >mouseY> 7:
                                 #Home Page
@@ -184,7 +184,6 @@ def rr2():
                                         balo = False
                         #If Woman
                         if event.type == pygame.MOUSEBUTTONDOWN and 640>mouseX >320 and 320 >mouseY> 0 or balo == True:
-                                print (cnter)
                                 bag_img = Woman
                                 balo = True
                                 cnter += 1
@@ -250,7 +249,6 @@ def rr2():
                             os.rename(browna, new_file_name3)
                             screen.blit(re_img, (0, 0))
                             while runn:
-                                print (cnter)
                                 cnter += 1
                                 if cnter > 360:
                                         skin = 4
