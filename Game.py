@@ -98,7 +98,15 @@ gear = pygame.image.load('img/Gear.png')
 poof = pygame.image.load('img/poof.png')
 
 
+playerHealth = 100
+enemyHealth = 100
+energy = 10
 
+class Battle():
+        BattleMatt = pygame.image.load('img/BattleMat.png')
+        screen.blit(BattleMatt,(0,0))
+        def Apple():
+                playerHealth += 10
 
 class Poof():
         def __init__(self, x, y):
@@ -1127,6 +1135,8 @@ def mapi():
                         fps = 120
                         pmmi = 2
 
+        
+
                         
 #If approach is from:
 #Top, then direction = 1
@@ -1996,7 +2006,7 @@ def scene11():
 
 pm = False
 
-runn = 1
+runn = 0
 run = True
 while run:
         print (rep)
@@ -2016,4 +2026,6 @@ while run:
                 scene11()
         elif runn == -1:
                 load()
+        elif runnn == 0:
+                Battle()
 pygame.quit()
