@@ -22,6 +22,8 @@ egame_over = 0
 eagame_over = 0
 hitbox = False
 engame_over = 0
+pmmi = 0
+pm = 0
 scene = 0
 rep = False
 loadcnter = 0
@@ -100,13 +102,16 @@ poof = pygame.image.load('img/poof.png')
 
 playerHealth = 100
 enemyHealth = 100
-energy = 10
+energy = 8
 
-class Battle():
-        BattleMatt = pygame.image.load('img/BattleMat.png')
-        screen.blit(BattleMatt,(0,0))
-        def Apple():
-                playerHealth += 10
+
+
+
+
+
+
+                                
+                        
 
 class Poof():
         def __init__(self, x, y):
@@ -1047,7 +1052,6 @@ world4 = World(world_data4)
 world5 = World(world_data5)
 world6 = World(world_data6)
 world11 = World(world_data11)
-pmmi = 0
 
 def mapi():
         global pmmi
@@ -2004,12 +2008,103 @@ def scene11():
         pygame.display.update()
 
 
+def updateds():
+        global scene
+        global fps
+        global text
+        global text3
+        global bg_img
+        global world
+        global eanemyRect
+        global worlddirection
+        global playerRect
+        global pm
+        global pmmi
+        global eagame_over
+        global game_over
+        global eaalive
+        global playerRectx
+        global playerRecty
+        global hitbox
+        global player6
+        global player9
+        global Defe
+        global fc
+        global npc
+        global npc2
+        global player
+        global bloba
+        global Tack
+        global tackcooldown
+        global event
+        global score
+        global world
+        global runn
+        global eqa
+        global engame_over
+        global energy
+        bg_img = pygame.image.load('img/BattleMat.png')
+        clock.tick(fps)
+
+        rectangle = pygame.Rect(10, 565, 80, 65)
+        rectangle1 = pygame.Rect(10, 495, 80, 65)
+        rectangle2 = pygame.Rect(10, 425, 80, 65)
+        rectangle3 = pygame.Rect(10, 355, 80, 65)
+        rectangle4 = pygame.Rect(10, 285, 80, 65)
+        rectangle5 = pygame.Rect(10, 215, 80, 65)
+        rectangle6 = pygame.Rect(10, 145, 80, 65)
+        rectangle7 = pygame.Rect(10, 75, 80, 65)
+        rectangle8 = pygame.Rect(10, 8, 80, 65)
+
+
+        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
+                pm = True
+                mapi()
+                if pmmi == 2:
+                        pmmi = 0
+                        
+        if pm == False:
+                screen.blit(bg_img, (0, 0))
+                if energy > 0:
+                        pygame.draw.rect(screen, (0,160,255), rectangle)
+                if energy > 1:
+                        pygame.draw.rect(screen, (0,160,255), rectangle1)
+                if energy > 2:
+                        pygame.draw.rect(screen, (0,160,255), rectangle2)
+                if energy > 3:
+                        pygame.draw.rect(screen, (0,160,255), rectangle3)
+                if energy > 4:
+                        pygame.draw.rect(screen, (0,160,255), rectangle4)
+                if energy > 5:
+                        pygame.draw.rect(screen, (0,160,255), rectangle5)
+                if energy > 6:
+                        pygame.draw.rect(screen, (0,160,255), rectangle6)
+                if energy > 7:
+                        pygame.draw.rect(screen, (0,160,255), rectangle7)
+                if energy > 8:
+                        pygame.draw.rect(screen, (0,160,255), rectangle8)
+                                
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        run = False
+
+        pygame.display.update()
+
+
+
+def Apple():
+        playerHealth += 10
+
+
+
+        
+
+
 pm = False
 
 runn = 0
 run = True
 while run:
-        print (rep)
         if runn == 1:
                 scene1()
         elif runn == 2:
@@ -2026,6 +2121,6 @@ while run:
                 scene11()
         elif runn == -1:
                 load()
-        elif runnn == 0:
-                Battle()
+        elif runn == 0:
+                updateds()
 pygame.quit()
