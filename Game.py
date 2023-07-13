@@ -171,6 +171,7 @@ class Poof():
                 global Tack
                 global eqa
                 global terminate
+
                 
                 plcol = True
                 dx = 0
@@ -284,6 +285,7 @@ class Player():
                 global map1
                 global chasex
                 global chasey
+                global event
                 global playerRectx
                 global playerRecty
                 global playerRect
@@ -291,11 +293,14 @@ class Player():
                 global tackcooldown
                 global chest1
                 global rep
+                global pm
+                global pmmi
                 global hitbox
                 global speed
                 global pegame_over
                 global poof
                 global Defe
+                global rep
                 global playerDirection
                 global Tack
                 global eqa
@@ -303,17 +308,17 @@ class Player():
                 plcol = True
                 dx = 0
                 dy = 0
+                (mouseX, mouseY) = pygame.mouse.get_pos()
                 walk_cooldown = 5
                 screen.blit(stimg, (0, 0))
-                draw_text('-Game Stats-', font_stats, (0,0,0,), (screen_width // 2)-620, 10)
-                draw_text('Score ='+ str(score) +'', font_stats, (0,0,0), (screen_width // 2)-620, 50)
                 
 
                 if game_over == 0:
                         #get keypresses
                         key = pygame.key.get_pressed()
-                        if tackcooldown <= 50:
-                                screen.blit(hurt, (0, 0))
+                        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
+                                terminate = False
+                                rep = True
                         if key[pygame.K_UP]:
                                 dy -= speed
                                 self.counter += 1
@@ -360,8 +365,6 @@ class Player():
                                 self.image = self.images_left[self.index]
                         if key[pygame.K_x] == False:
                                 Tack = False
-                                if tackcooldown < 0:
-                                        game_over = -1
                                 if self.direction == 2:
                                         self.image = self.images_lefto[self.index]
                                 if self.direction == -2:
@@ -370,11 +373,8 @@ class Player():
                                         self.image = self.images_left[self.index]
                                 if self.direction == 1:
                                         self.image = self.images_righto[self.index]
-                                draw_text('Mana ='+ str(tackcooldown) +'', font_stats, (0,0,0), (screen_width // 2)-620, 30)
                         if key[pygame.K_z] == False:
                                 Defe = False
-                                if tackcooldown < 0:
-                                        game_over = -1
                                 if self.direction == 2:
                                         self.image = self.images_lefto[self.index]
                                 if self.direction == -2:
@@ -383,9 +383,7 @@ class Player():
                                         self.image = self.images_left[self.index]
                                 if self.direction == 1:
                                         self.image = self.images_righto[self.index]
-                                draw_text('Mana ='+ str(tackcooldown) +'', font_stats, (0,0,0), (screen_width // 2)-620, 30)
                         if key[pygame.K_z]:
-                                tackcooldown -= 10
                                 Defe = True
                                 dounter = 0
                                 if tackcooldown < 0:
@@ -398,13 +396,9 @@ class Player():
                                         self.image = self.images_blockb[self.index]
                                 if self.direction == 1:
                                         self.image = self.images_blockr[self.index]
-                                draw_text('Mana ='+ str(tackcooldown) +'', font_stats, (0,0,0), (screen_width // 2)-620, 30)
                         if key[pygame.K_x]:
-                                tackcooldown -= 20
                                 Tack = True
                                 dounter = 0
-                                if tackcooldown < 0:
-                                        game_over = -1
                                 if self.direction == 2:
                                         self.image = self.images_lattack[self.index]
                                 if self.direction == -2:
@@ -413,13 +407,11 @@ class Player():
                                         self.image = self.images_battack[self.index]
                                 if self.direction == 1:
                                         self.image = self.images_rattack[self.index]
-                                draw_text('Mana ='+ str(tackcooldown) +'', font_stats, (0,0,0), (screen_width // 2)-620, 30)
                         if key[pygame.K_SPACE]:
                                 plcol = False
-                                tackcooldown -= 30
                                 if self.rect.y > 640:
                                         dx = 0 
-                        if key[pygame.K_v]:
+                        if key[pygame.K_c]:
                                 terminate = False
                                 rep = True
                         if key[pygame.K_LEFT] == False and key[pygame.K_RIGHT] == False and key[pygame.K_DOWN] and key[pygame.K_UP] :
@@ -433,12 +425,6 @@ class Player():
                                         self.image = self.images_left[self.index]
                                 if self.direction == 2:
                                         self.image = self.images_lefto[self.index]
-
-
-                        if terminate == False:
-                                if rep:
-                                        poof = Poof(playerRectx, playerRecty)
-                                pegame_over = poof.update(pegame_over)
                         
                                         
 
@@ -484,10 +470,7 @@ class Player():
                         self.image = self.dead_image
                         screen.fill((0,0,1))
                         pygame.draw.rect(screen, (255, 255,255), pygame.Rect(0, 320, 6000000, 6000))
-                        if tackcooldown > 0:
-                                draw_text('GAME OVER!', font, white, (screen_width // 2) - 200, screen_height // 2 - 100)
-                        if tackcooldown < 1:
-                                draw_text('GAME OVER!', font, (205, 50, 255), (screen_width // 2) - 200, screen_height // 2 - 100)
+                        draw_text('GAME OVER!', font, white, (screen_width // 2) - 200, screen_height // 2 - 100)
                         if engame_over == 0:
                                 draw_text('Take The L And Search Up A Walkthrough!', font_score, blue, (screen_width // 2)-450, screen_height // 2 + 100)
                         if engame_over == 1:
@@ -705,7 +688,6 @@ class Npc():
                         listo = [1,2,3,4,5,6,7,8,9,10,11,22,33,44,55,66,77,88,99]
                         listc = random.choice(listo)
                         screen.blit(brokenho, (0,0))
-                        tackcooldown -= 1
                         if listc == 1:
                                 screen.blit (meme, (0, 0))
 
@@ -1121,10 +1103,10 @@ def mapi():
                         speed =10
                         pmmi = 2
                 if (event.type == pygame.MOUSEBUTTONDOWN and 650>mouseX >200 and 220 >mouseY> 180):
-                        tackcooldown = 10
+                        #Mana
                         pmmi = 2
                 if (event.type == pygame.MOUSEBUTTONDOWN and 1120>mouseX >710 and 220 >mouseY> 180):
-                        tackcooldown = 1000
+                        #Mana
                         pmmi = 2
                 if (event.type == pygame.MOUSEBUTTONDOWN and 434>mouseX >205 and 291 >mouseY> 251):
                         fps = 10
@@ -1312,6 +1294,7 @@ def scene1():
         text = text1
         scene = 1
         world = world2
+        (mouseX, mouseY) = pygame.mouse.get_pos()
 
         if fc ==  True:
                 player = Player(1200, 280)
@@ -1333,12 +1316,13 @@ def scene1():
 
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
+                        
                 engame_over = npc.update(engame_over)
                 if worlddirection == 3:
                         game_over = player.update(game_over)
@@ -1409,6 +1393,7 @@ def scene2():
         text = text2
         scene = 2
         world = world1
+        (mouseX, mouseY) = pygame.mouse.get_pos()
 
         if fc:
                 player = Player(1200, 280)
@@ -1434,12 +1419,12 @@ def scene2():
         
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc1.update(engame_over)
                 if worlddirection == 4:
                         game_over = player4.update(game_over)
@@ -1514,6 +1499,8 @@ def scene3():
         text = text5
         scene = 3
         world = world3
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+
 
         if fc:
                 player = Player(1200, 280)
@@ -1541,12 +1528,12 @@ def scene3():
         
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc1.update(engame_over)
                 if worlddirection == 4:
                         game_over = player2.update(game_over)
@@ -1617,6 +1604,8 @@ def scene4():
         text = text3
         scene = 4
         world = world4
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+
 
         if fc ==  True:
                 player = Player(1200, 280)
@@ -1641,12 +1630,12 @@ def scene4():
 
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc2.update(engame_over)
                 if worlddirection == 1:
                         game_over = player6.update(game_over)
@@ -1716,6 +1705,7 @@ def scene5():
         text = text4
         scene = 5
         world = world5
+        (mouseX, mouseY) = pygame.mouse.get_pos()
 
         if fc ==  True:
                 player8 = Player(20, 280)
@@ -1739,12 +1729,12 @@ def scene5():
 
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 eagame_over = bloba.update(eagame_over)
                 if worlddirection == 3:
@@ -1779,12 +1769,7 @@ def scene5():
                                         game_over = -1
                                 if Tack == True:
                                         eagame_over = -1
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
-                else:
-                        if playerRect.colliderect(eanemyRect):
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
+                
 
 
                
@@ -1835,7 +1820,9 @@ def scene6():
         text = text7
         scene = 6
         world = world6
+        (mouseX, mouseY) = pygame.mouse.get_pos()
 
+        
         if fc ==  True:
                 player8 = Player(20, 280)
                 npc = Npc(620, 450)
@@ -1857,12 +1844,12 @@ def scene6():
 
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 #eagame_over = bloba.update(eagame_over)
                 if worlddirection == 3:
@@ -1898,12 +1885,7 @@ def scene6():
                                         game_over = -1
                                 if Tack == True:
                                         eagame_over = -1
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
-                else:
-                        if playerRect.colliderect(eanemyRect):
-                                if tackcooldown >= 11:
-                                        tackcooldown -= 10
+
 
 
                
@@ -1952,6 +1934,8 @@ def scene11():
         text = text6
         scene = 6
         world = world11
+        (mouseX, mouseY) = pygame.mouse.get_pos()
+
 
         if fc ==  True:
                 player8 = Player(580, 500)
@@ -1974,12 +1958,12 @@ def scene11():
 
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
         if pm == False:
+                if terminate == False:
+                        if rep:
+                                poof = Poof(playerRectx, playerRecty)
+                                rep = False
+                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 if worlddirection == 3:
                         game_over = player8.update(game_over)
@@ -2057,13 +2041,10 @@ def updateds():
         rectangle8 = pygame.Rect(10, 8, 80, 65)
 
 
-        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
-                pm = True
-                mapi()
-                if pmmi == 2:
-                        pmmi = 0
+
                         
         if pm == False:
+
                 screen.blit(bg_img, (0, 0))
                 if energy > 0:
                         pygame.draw.rect(screen, (0,160,255), rectangle)
@@ -2102,10 +2083,11 @@ def Apple():
 
 pm = False
 
-runn = 0
+runn = 1
 run = True
 while run:
         if runn == 1:
+                print("Hi")
                 scene1()
         elif runn == 2:
                 scene2()
