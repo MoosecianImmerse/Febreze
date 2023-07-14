@@ -162,10 +162,10 @@ class Poof():
                 global pd
                 global engame_over
                 global tackcooldown
-                global playerDirection
                 global chest1
                 global hitbox
                 global speed
+                global playerDirection
                 global rep
                 global Defe
                 global Tack
@@ -316,7 +316,8 @@ class Player():
                 if game_over == 0:
                         #get keypresses
                         key = pygame.key.get_pressed()
-                        if pygame.key.get_pressed()[pygame.K_c] or pm == True:
+                        event = pygame.event.get()
+                        if pygame.key.get_pressed()[pygame.K_c]:
                                 terminate = False
                                 rep = True
                         if key[pygame.K_UP]:
@@ -439,6 +440,11 @@ class Player():
                                                 if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
                                                         dy = 0
 
+                        if terminate == False:
+                                if rep:
+                                        poof = Poof(playerRectx, playerRecty)
+                                pegame_over = poof.update(pegame_over)
+
 
                                                 
 
@@ -540,12 +546,13 @@ class Eanemies():
                 global bulletRect
                 global eanemyRectx
                 global colcnter
+                global terminate
                 global eqa
                 dx = 0
                 dy = 0
                 if eagame_over == 0:
 
-                        if bulletRect.colliderect(self.rect):
+                        if bulletRect.colliderect(self.rect) and terminate == False:
                                 eagame_over = -1
                         
                         if eanemyRectx > playerRectx:
@@ -1317,11 +1324,6 @@ def scene1():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                         
                 engame_over = npc.update(engame_over)
                 if worlddirection == 3:
@@ -1420,11 +1422,6 @@ def scene2():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc1.update(engame_over)
                 if worlddirection == 4:
                         game_over = player4.update(game_over)
@@ -1529,11 +1526,6 @@ def scene3():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc1.update(engame_over)
                 if worlddirection == 4:
                         game_over = player2.update(game_over)
@@ -1631,11 +1623,6 @@ def scene4():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc2.update(engame_over)
                 if worlddirection == 1:
                         game_over = player6.update(game_over)
@@ -1730,11 +1717,6 @@ def scene5():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 eagame_over = bloba.update(eagame_over)
                 if worlddirection == 3:
@@ -1845,11 +1827,6 @@ def scene6():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 #eagame_over = bloba.update(eagame_over)
                 if worlddirection == 3:
@@ -1959,11 +1936,6 @@ def scene11():
 
 
         if pm == False:
-                if terminate == False:
-                        if rep:
-                                poof = Poof(playerRectx, playerRecty)
-                                rep = False
-                        pegame_over = poof.update(pegame_over)
                 engame_over = npc.update(engame_over)
                 if worlddirection == 3:
                         game_over = player8.update(game_over)
@@ -2087,7 +2059,6 @@ runn = 1
 run = True
 while run:
         if runn == 1:
-                print("Hi")
                 scene1()
         elif runn == 2:
                 scene2()
